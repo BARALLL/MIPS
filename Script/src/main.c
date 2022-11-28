@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 
 int main(int argc, char **argv)
@@ -14,7 +15,7 @@ int main(int argc, char **argv)
     char* fileNameOut = "";
 
 
-    if (argc == 3 && argv[2] == "-pas")
+    if (argc == 3 && !strcmp(argv[2], "-pas"))
         fileName = argv[1];
     else if (argc == 4)
     {
@@ -22,7 +23,7 @@ int main(int argc, char **argv)
         fileNameDone = argv[2];
         fileNameOut = argv[3];
     }
-    else if (argc != 1 || (argc == 3 && argv[2] != "-pas"))
+    else if (argc != 1 || (argc == 3 && !strcmp(argv[2], "-pas")))
     {
         printf("MIPS Error 400: Entry argument not valid : %d && %s", argc, argv[2]);
         exit(2);
@@ -33,15 +34,15 @@ int main(int argc, char **argv)
     FILE* fileDone = NULL;
     FILE* fileOut = NULL;
 
-    if (fileName != NULL) {
-        file = openfile(fileName, "r");
-    }
-    if (fileNameDone) {
-        fileDone = openfile(fileNameDone, "w+");
-    }
-    if (fileNameOut) {
-        fileOut = openfile(fileNameOut, "w");
-    }
+    if (fileName != NULL)
+        file = fopen(fileName, "r");
+
+    if (fileNameDone)
+        fileDone = fopen(fileNameDone, "w+");
+
+    if (fileNameOut)
+        fileOut = fopen(fileNameOut, "w");
+
 
 
     if (file != NULL && fileNameDone != NULL) 
@@ -72,20 +73,25 @@ int main(int argc, char **argv)
        Le second argument (argv[2]) est le nom du fichier où il faut
        enregistrer le code assemblé.
        Le troisième argument (argv[3]) est le nom du fichier où il faut
-       enregistrer l'état final du programme à la fin de l'exécution. */
+       enregistrer l'état final du programme à la fin de l'exécution. 
+    */
 
-    /* Les rendus seront testés par le mode automatique, il est donc important
+    /* 
+    Les rendus seront testés par le mode automatique, il est donc important
        que ce mode fasse les choses suivantes :
        - Lire le programme assembleur. Ouvrez-le avec le mode "r" de fopen().
        - Produire les deux fichiers de sortie. Ouvrez-les avec le mode "w" de
          fopen() pour qu'ils soient créés s'ils n'existent pas encore.
        Pour commencer vous n'avez pas besoin d'utiliser les fichiers, il suffit
-       de les ouvrir et de les fermer immédiatement. */
+       de les ouvrir et de les fermer immédiatement. 
+    */
 
-    /* Le Makefile fourni contient une commande "test-cli" qui vérifie que le
+    /* 
+       Le Makefile fourni contient une commande "test-cli" qui vérifie que le
        mode automatique fonctionne et crée bien les deux fichiers de sortie.
        Tapez "make test-cli" pour effectuer le test. S'il n'y a pas d'erreur,
-       c'est bon. */
+       c'est bon.
+    */
 
     /* Supprimez ces commentaires une fois que c'est fait. */
 

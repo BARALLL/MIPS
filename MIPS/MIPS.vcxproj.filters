@@ -13,5 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\src">
+      <UniqueIdentifier>{44772b94-52ed-4a4b-997f-dd0d405a60a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\tests">
+      <UniqueIdentifier>{735b9e4e-bdee-42fe-9ab2-c21ce0b309e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\script\src\main.c">
+      <Filter>Fichiers sources\src</Filter>
+    </ClCompile>
+    <ClCompile Include="translate.c">
+      <Filter>Fichiers sources\src</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.c">
+      <Filter>Fichiers sources\src</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.c">
+      <Filter>Fichiers sources\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\script\INSTRUCTIONS.md">
+      <Filter>Fichiers sources</Filter>
+    </None>
+    <None Include="..\script\Makefile">
+      <Filter>Fichiers sources</Filter>
+    </None>
+    <None Include="..\script\README.md">
+      <Filter>Fichiers sources</Filter>
+    </None>
+    <None Include="..\script\test.py">
+      <Filter>Fichiers sources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tools.h">
+      <Filter>Fichiers sources\src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 # INDIQUEZ ICI: Votre nom et celui de votre binôme
-AUTEURS := Nom1_Nom2
-
+AUTEURS := GUERIN_BARAL
 MAIN := emul-mips
 SRC_C := $(wildcard src/*.c)
 

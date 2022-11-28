@@ -9,10 +9,10 @@ date: 28/11/2022
 ## Rendu 1
 
 * Cochez (en remplaçant `[ ]` par `[x]`) si vous avez :
-  - [ ] Vérifié que `make test-cli` ne renvoie pas d'erreur.
-  - [ ] Vérifié que `make tests` se plaint sur le nombre d'instructions et pas
+  - [x] Vérifié que `make test-cli` ne renvoie pas d'erreur.
+  - [x] Vérifié que `make tests` se plaint sur le nombre d'instructions et pas
       sur l'existence des fichiers de sortie.
-  - [ ] Vu que les soumissions se font avec `make tar`.
+  - [x] Vu que les soumissions se font avec `make tar`.
 
 
 ## Rendu 2

@@ -24,7 +24,8 @@ des opérandes entières) ?
 
 L'analyse de texte fonctionne sur le principe suivant :
   - L'assembleur va lire le fichier texte où se trouve les instructions, et s'arrêtera à la fin du fichier.
-  - Il récupère puis traduit les instructions ligne par ligne, et agira différemment en fonction des instructions décodées.
+  - Il récupère puis traduit les instructions ligne par ligne, et agira différemment en fonction des instructions décodées
+  à l'aide d'un switch.
     - Par exemple, dans le cas d'un ADDI rd, rs1, imm, une fois que l'assembleur aura remarqué l'instruction ADDI,
     avec en premier un registre (ici de destination), un registre (ici de source), et enfin une valeur immédiate.
     - Si jamais le cas précédent n'est pas satisfait, alors l'assembleur passe à la ligne suivante et précise que
@@ -36,12 +37,19 @@ L'analyse de texte fonctionne sur le principe suivant :
 * Avez-vous vu des motifs récurrents émerger ? Avez-vous "factorisé" ces motifs
 pour éviter de les répéter ? Si non, serait-ce difficile ?
 
-[COMPLÉTER ICI]
+Nous avons vu des motifs émerger, par exemple lors de la recherche de types de motifs. En effet, si l'on regarde les registres
+utilisés, ainsi que les valeurs associées pour certaines instructions, elles sont identiques. 
+Ainsi, cela réduira le nombre de cas à traiter à l'aide d'un switch, car on pourra rentrer dans ce cas lorsqu'un des cas donnés
+est satisfait (ici nom d'une instruction).
+Pour être précis, il nous suffira de distinguer simplement trois cas d'instructions :
+  - R-instruction $rd, $rs, $rt
+  - I-instruction $rt, $rs, immediate
+  - J-instruction target
 
 * Comment avez-vous procédé pour écrire les tests ? Étes-vous confiant·e·s que
 toutes les instructions gérées sont couvertes ? 
 
-[COMPLÉTER ICI]
+
 
 * Quelle a été votre expérience avec l'utilisation et la compréhension de la
 documentation (ie. des annexes) ?

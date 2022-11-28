@@ -22,7 +22,16 @@ date: 28/11/2022
 * Comment avez-vous choisi de programmer l'analyse de texte (dont la lecture
 des opérandes entières) ?
 
-[COMPLÉTER ICI]
+L'analyse de texte fonctionne sur le principe suivant :
+  - L'assembleur va lire le fichier texte où se trouve les instructions, et s'arrêtera à la fin du fichier.
+  - Il récupère puis traduit les instructions ligne par ligne, et agira différemment en fonction des instructions décodées.
+    - Par exemple, dans le cas d'un ADDI rd, rs1, imm, une fois que l'assembleur aura remarqué l'instruction ADDI,
+    avec en premier un registre (ici de destination), un registre (ici de source), et enfin une valeur immédiate.
+    - Si jamais le cas précédent n'est pas satisfait, alors l'assembleur passe à la ligne suivante et précise que
+    la syntaxe de la ligne était incorrecte.
+    - Dans le cas d'un branchement, l'assembleur continuera à lire le fichier jusqu'à trouver le début de dit-branchement,
+    en ignorant les autres lignes.
+    - Il devra aussi être capable d'ignorer les instructions "vides" (exemple, NOP).   
 
 * Avez-vous vu des motifs récurrents émerger ? Avez-vous "factorisé" ces motifs
 pour éviter de les répéter ? Si non, serait-ce difficile ?

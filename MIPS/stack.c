@@ -1,17 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
+#include "stack.h"
 
-#define MAX_MEM 0xFFFFFFFF //addresse sur 32 bits => 0xFFFFFFFF
-
-
-typedef struct mem
-{
-    int32_t data;
-    unsigned long int address;
-    struct mem* next;
-} memory;
 
 memory* createMem() {
     memory* elem = malloc(sizeof(memory));

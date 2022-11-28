@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\script\src\main.c" />
+    <ClCompile Include="mode.c" />
     <ClCompile Include="stack.c" />
     <ClCompile Include="tools.c" />
     <ClCompile Include="translate.c" />
@@ -151,6 +152,7 @@
     <None Include="..\script\test.py" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="stack.h" />
     <ClInclude Include="tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -33,6 +33,9 @@
     <ClCompile Include="stack.c">
       <Filter>Fichiers sources\src</Filter>
     </ClCompile>
+    <ClCompile Include="mode.c">
+      <Filter>Fichiers sources\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\script\INSTRUCTIONS.md">
@@ -50,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
+      <Filter>Fichiers sources\src</Filter>
+    </ClInclude>
+    <ClInclude Include="stack.h">
       <Filter>Fichiers sources\src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 ---
 title: Projet CS351 (2022-2023): Émulateur MIPS
 author: GUERIN BARAL
-date: 28/11/2022
+date: 5/12/2022
 ---
 
 ## Rendu 1
@@ -49,18 +49,19 @@ Pour être précis, il nous suffira de distinguer simplement trois cas d'instruc
 * Comment avez-vous procédé pour écrire les tests ? Étes-vous confiant·e·s que
 toutes les instructions gérées sont couvertes ? 
 
-
+Nous avons écris les tests de manière à tester les cas simples, puis particuliers de notre assembleur, notamment en mettant
+des instructions volontairement fausses, ou alors avec des valeurs impossibles. Nous sommes ainsi confiants que toutes les instructions gérées sont couvertes.
 
 * Quelle a été votre expérience avec l'utilisation et la compréhension de la
 documentation (ie. des annexes) ?
 
-[COMPLÉTER ICI]
+La compréhension et l'utilisation de la documentation ne nous a pas posés de gros problèmes et a été plutôt claire.
 
 * Cochez (en remplaçant `[ ]` par `[x]`) si vous avez :
-  - [ ] Implémenté la traduction pour des instructions de toutes les catéories
+  - [x] Implémenté la traduction pour des instructions de toutes les catéories
       (calcul, comparaisons, sauts, HI/LO, mémoire)
-  - [ ] Implémenté la traduction pour toutes les instructions de l'annexe 2
-  - [ ] Pris en compte les cas particuliers : valeurs négatives, hors limites,
+  - [x] Implémenté la traduction pour toutes les instructions de l'annexe 2
+  - [x] Pris en compte les cas particuliers : valeurs négatives, hors limites,
       noms d'instructions ou opérandes invalides...
 
 

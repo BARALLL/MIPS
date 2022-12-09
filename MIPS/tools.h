@@ -1,12 +1,16 @@
 #pragma once
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <stdint.h>
+
 
 typedef struct
 {
 	char* inst;
-	int format;
+	char format;
 	size_t opcode;
-	size_t compInstr;
+	int32_t compInstr;
 
 } instr;
 

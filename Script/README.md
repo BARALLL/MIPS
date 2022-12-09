@@ -71,16 +71,28 @@ La compréhension et l'utilisation de la documentation ne nous a pas posés de g
 
 * Quelle structure en modules planifiez-vous d'utiliser pour l'émulateur ?
 
-[COMPLÉTER ICI]
+La structure en modules que nous plafinions d'utiliser pour l'émulateur est la suivante : 
+  - module pour l'analyse et l'exécution des instructions MIPS (en mode interactif ou en mode fichier)
+  - module pour la gestion de la mémoire
 
 * Quelles seront les fonctions principales de chaque module ?
 
-[COMPLÉTER ICI]
+Les fonctions principales de chaque module seront les suivantes : 
+  - pour l'exécution des instructions MIPS :
+    - récupérer les différentes opérandes de notre instruction (dans notre fichier ou dans notre)
+    - traduire en héxadécimal les différentes opérandes
+    - retourner le code héxadécimal entier correspondant à notre instruction
+    - retranscrire l'héxadécimal en une instruction, et l'exécuter
+  - pour la gestion de la mémoire 
+    - récupérer et enregistrer des valeurs de registres
+    - en fonction des instructions, bien appliquer ces changements aux registres
+    - lors de la dernière instruction, retourner les valeurs des registres
 
 * Quels avantages voyez vous à cette structure (à comparer à un unique fichier)?
 
-[COMPLÉTER ICI]
-
+Les avantages à cette structure par rapport à la comparaison à un unique fichier :
+  - Si l'on souhaite exécuter uniquement l'un des modules, nous pourrons le faire
+  - On peut également choisir le mode interactif ou fichier en fonction de ce qu'on fait
 
 ## Rendu 4
 

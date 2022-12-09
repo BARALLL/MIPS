@@ -71,28 +71,28 @@ La compréhension et l'utilisation de la documentation ne nous a pas posés de g
 
 * Quelle structure en modules planifiez-vous d'utiliser pour l'émulateur ?
 
-La structure en modules que nous plafinions d'utiliser pour l'émulateur est la suivante : 
-  - module pour l'analyse et l'exécution des instructions MIPS (en mode interactif ou en mode fichier)
-  - module pour la gestion de la mémoire
+Pour l'émulateur d'assembleur que nous avons planifié, nous utiliserons une structure en modules pour faciliter son utilisation et sa flexibilité. La structure en modules comprendra les éléments suivants :
+  - Un module pour l'analyse et l'exécution des instructions MIPS (en mode interactif ou en mode fichier)
+  - Un module pour la gestion de la mémoire
 
 * Quelles seront les fonctions principales de chaque module ?
 
-Les fonctions principales de chaque module seront les suivantes : 
-  - pour l'exécution des instructions MIPS :
-    - récupérer les différentes opérandes de notre instruction (dans notre fichier ou dans notre)
-    - traduire en héxadécimal les différentes opérandes
-    - retourner le code héxadécimal entier correspondant à notre instruction
-    - retranscrire l'héxadécimal en une instruction, et l'exécuter
-  - pour la gestion de la mémoire 
-    - récupérer et enregistrer des valeurs de registres
-    - en fonction des instructions, bien appliquer ces changements aux registres
-    - lors de la dernière instruction, retourner les valeurs des registres
+Les fonctions principales de chaque module seront les suivantes :
+- Pour le module d'analyse et d'exécution des instructions MIPS :
+  - Récupération des opérandes de l'instruction
+  - Traduction des opérandes en héxadécimal
+  - Retour du code héxadécimal complet correspondant à l'instruction
+  - Retranscription de l'héxadécimal en instruction et exécution
+- Pour le module de gestion de la mémoire :
+  - Récupération et enregistrement des valeurs des registres
+  - Application des changements aux registres en fonction des instructions
+  - Retour des valeurs des registres à la fin de l'exécution des instructions
 
 * Quels avantages voyez vous à cette structure (à comparer à un unique fichier)?
 
-Les avantages à cette structure par rapport à la comparaison à un unique fichier :
-  - Si l'on souhaite exécuter uniquement l'un des modules, nous pourrons le faire
-  - On peut également choisir le mode interactif ou fichier en fonction de ce qu'on fait
+Les avantages de cette structure en modules par rapport à un fichier unique sont les suivants :
+  - Permet l'exécution indépendante des modules
+  - Possibilité de choisir entre les modes interactif et fichier en fonction des besoins.
 
 ## Rendu 4
 

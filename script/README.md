@@ -92,7 +92,9 @@ Les fonctions principales de chaque module seront les suivantes :
 
 Les avantages de cette structure en modules par rapport à un fichier unique sont les suivants :
   - Permet l'exécution indépendante des modules
-  - Possibilité de choisir entre les modes interactif et fichier en fonction des besoins.
+  - Possibilité de choisir entre les modes interactif et fichier en fonction des besoins
+  - Réutilisation du code facilitée
+  - Facilité de maintenance
 
 ## Rendu 4
 

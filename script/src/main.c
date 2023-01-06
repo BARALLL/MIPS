@@ -347,7 +347,7 @@ int interactive_mode(stack* mem) {
                 compInstr = strToInt32(instr_str, &type);
                 if(compInstr != (uint32_t)-1)
                     //execute(compInstr, type, mem);
-                    print(" ");
+                    printf(" ");
                 else
                     printf("MIPS Error 500: Parsing Error\n");
             }

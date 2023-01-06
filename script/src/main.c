@@ -346,7 +346,8 @@ int interactive_mode(stack* mem) {
             if (!strncmp(instr_str, "#", 1) == 0) {
                 compInstr = strToInt32(instr_str, &type);
                 if(compInstr != (uint32_t)-1)
-                    execute(compInstr, type, mem);
+                    //execute(compInstr, type, mem);
+                    print(" ");
                 else
                     printf("MIPS Error 500: Parsing Error\n");
             }
@@ -408,8 +409,10 @@ int main(int argc, char* argv[]) {
     char* fileNameDone = NULL;
     char* fileNameOut = NULL;
     
+    
     for (int i = 0; i < 32; i++)        //test registre
-        R[i] = i;
+        R[i] = 0;
+   
 
     stack* mem = createMem();
     if (!mem)               //print error deja dans le fonction createMem

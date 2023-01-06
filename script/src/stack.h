@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define MAX_MEM 0xFFFFFFFF //addresse sur 32 bits => 0xFFFFFFFF
+#define MAX_MEM 0xFFFFFFFF //32 bits
 
 typedef struct mem
 {
@@ -17,13 +17,3 @@ typedef struct mem
 stack* createMem();
 
 void freeMem(stack* mem);
-
-void checkMem(uint32_t address);
-
-int32_t getElem(stack* mem, uint32_t address);
-
-void insertElem(stack* mem, uint32_t address, int32_t data);
-
-void showMem(stack* mem);
-
-void deleteElem(stack* mem, uint32_t address);

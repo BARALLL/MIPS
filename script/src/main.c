@@ -6,6 +6,7 @@
 #include "stack.h"
 #pragma warning(disable : 4996)
 
+
 int R[32];
 uint32_t PC;
 uint32_t HI, LO;
@@ -17,24 +18,15 @@ void execute(uint32_t instruction, char type, stack* mem) {
 
     if (type == 'R')
     {
-        rd = (instruction & 0x03E00000) >> 21;
-        rs = (instruction & 0x001F0000) >> 16;
-        rt = (instruction & 0x0000F800) >> 11;
+        rd = (instruction & 0x0000F800) >> 11;
+        rs = (instruction & 0x03E00000) >> 21; 
+        rt = (instruction & 0x001F0000) >> 16;
         immediate = instruction & 0x0000FFFF;
-        special = instruction & 0x000007FF;
-        shamt = instruction & 0x0000001F;
-
-        /*
-        rd = (instruction >> 11) & 0x1F;
-        shamt = (instruction >> 6) & 0x1F;
-        rs = (instruction >> 21) & 0x1F;
-        rt = (instruction >> 16) & 0x1F;
-        immediate = instruction & 0xFFFF;
-        special = instruction & 0xFF;
-        */
+        special = instruction & 0x000003F;
+        shamt = (instruction & 0x000007C0) >> 6;
 
 
-        if (special == 0x00) {              // ADD
+        if (special == 0x20) {              // ADD
             tmp = R[rs] + R[rt];
             if (((tmp >> 30) & 1) != ((tmp >> 31) & 1))
                 printf("MIPS Error 201: Integer Overflow");
@@ -49,7 +41,7 @@ void execute(uint32_t instruction, char type, stack* mem) {
                 R[rd] = tmp;
         }
         else if (special == 0x24) R[rd] = R[rs] & R[rt];     // AND
-        else if (special == 0x24) R[rt] = R[rs] | R[rt];     // OR
+        else if (special == 0x24) R[rd] = R[rs] | R[rt];     // OR
         else if (special == 0x1A) {
             R[rt] = R[rs] / R[rd];         // DIV
             if (R[rd] == 0) 
@@ -75,7 +67,7 @@ void execute(uint32_t instruction, char type, stack* mem) {
         else if (special == 0x08) PC = R[rs];                     // JR
         else if (special == 0x10) PC = HI;
         else if (special == 0x12) PC = LO;
-        printf("Resultat : %d", R[rt]);
+        printf("Resultat : %d\n", R[rd]);
     }
 
     else if (type == 'J')
@@ -95,9 +87,9 @@ void execute(uint32_t instruction, char type, stack* mem) {
     else if (type == 'I')
     {
         opcode = (instruction & 0xFC000000) >> 26;
-        rd = (instruction & 0x03E00000) >> 21;
-        rs = (instruction & 0x001F0000) >> 16;
-        rt = (instruction & 0x0000F800) >> 11;
+        rd = (instruction & 0x0000F800) >> 11;
+        rs = (instruction & 0x03E00000) >> 21;
+        rt = (instruction & 0x001F0000) >> 16;
         immediate = instruction & 0x0000FFFF;
 
 
@@ -106,7 +98,7 @@ void execute(uint32_t instruction, char type, stack* mem) {
             if (((tmp >> 30) & 1) != ((tmp >> 31) & 1))
                 printf("MIPS Error 201: Integer Overflow");
             else
-                R[rd] = tmp;
+                R[rt] = tmp;
         }
 
         else if (opcode == 0x04) { // BEQ
@@ -138,15 +130,19 @@ void execute(uint32_t instruction, char type, stack* mem) {
         }
 
         else if (opcode == 0x23) { // LW
+            /*      stack non finie...
             R[rt] = (getElem(mem, (uint32_t)(R[rs] + immediate) << 24)) | (getElem(mem, (uint32_t)(R[rs] + immediate + 1) << 16))
                 | (getElem(mem, (uint32_t)(R[rs] + immediate + 2) << 8)) | getElem(mem, (uint32_t)(R[rs] + immediate + 3));
+                */
         }
 
         else if (opcode == 0x2B) { // SW
+            /*      stack non finie...
             insertElem(mem, (uint32_t)(R[rs] + immediate), R[rt] >> 24);
             insertElem(mem, (uint32_t)(R[rs] + immediate + 1), (R[rt] >> 16) & 0xFF);
             insertElem(mem, (uint32_t)(R[rs] + immediate + 2), (R[rt] >> 8) & 0xFF);
             insertElem(mem, (uint32_t)(R[rs] + immediate + 3), (R[rt]) & 0xFF);
+            */
         }
 
         else if (opcode == 0x2A) { // SLT
@@ -222,7 +218,7 @@ uint32_t strToInt32(char* instruction, char* type) {
 
     if (!name)
     {
-        printf("MIPS Error 504: Incorrect instruction");
+        printf("MIPS Error 504: Incorrect instruction\n");
         return -1;
     }
 
@@ -277,7 +273,7 @@ uint32_t strToInt32(char* instruction, char* type) {
         else if (strcmp(name, "SYSCALL") == 0) opcode = 0x0C;
         else
         {
-            printf("Instruction Error 501: Instruction not found\n");
+            printf("MIPS Error 501: Instruction not found\n");
             return -1;
         }
 
@@ -332,7 +328,7 @@ uint32_t strToInt32(char* instruction, char* type) {
         *type = 'I';
     }
 
-    printf("MIPS Hexadecimal instruction is %08x\n", compInstr);
+    printf("MIPS Hexadecimal instruction is %08x\n\n", compInstr);
     return compInstr;
 }
 
@@ -350,8 +346,7 @@ int interactive_mode(stack* mem) {
             if (!strncmp(instr_str, "#", 1) == 0) {
                 compInstr = strToInt32(instr_str, &type);
                 if(compInstr != (uint32_t)-1)
-                    //execute(compInstr, type, mem);
-                    printf("\n");
+                    execute(compInstr, type, mem);
                 else
                     printf("MIPS Error 500: Parsing Error\n");
             }
@@ -385,12 +380,13 @@ int file_mode(FILE* file, FILE* outputFile, bool pas, stack* mem) {
             if (pas)
                 scanf("Waiting for user... %d\n", &wait);
             if (!strncmp(instr_str, "#", 1) == 0) {
-                printf("MIPS Line %d is %s\n", count, instr_str);
+                printf("MIPS Line %d is %s", count, instr_str);
                 
                 compInstr = strToInt32(instr_str, &type);   // Parse the MIPS instruction from the string
                 //if (compInstr != -1)
                     //execute(compInstr, type, mem);
-                fwrite(&compInstr, sizeof(compInstr), 1, outputFile);
+                fprintf(outputFile, "%08x\n", compInstr);
+                //fwrite(&compInstr, sizeof(compInstr), 1, outputFile);
                 //fwrite("\n", sizeof(char), 1, outputFile);
                 type = ' ';
                 count++;
@@ -432,7 +428,7 @@ int main(int argc, char* argv[]) {
     }
     else if (argc != 1 || (argc == 3 && pas))
     {
-        printf("MIPS Error 100: Entry argument not valid : %d && %s", argc, argv[2]);
+        printf("MIPS Error 100: Entry argument not valid : %d && %s\n", argc, argv[2]);
         exit(2);
     }
 
@@ -456,7 +452,7 @@ int main(int argc, char* argv[]) {
     {
         file_mode(file, fileDone, 1, mem);
         for (int i = 0; i < 32; i++)                //argc == 3
-            fprintf(fileOut, "$%d: %d\n", i, R[i]); //write exec to output file
+            fprintf(fileOut, "$02%d: %d\n", i, R[i]); //write registers after execution to output file
     }
     else if (fileName != NULL)
     {
@@ -477,7 +473,7 @@ int main(int argc, char* argv[]) {
     if (fileOut)
         fclose(fileOut);
 
-    //freeMem(mem);
+    freeMem(mem);
 
     return 0;
 }
